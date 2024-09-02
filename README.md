@@ -1,7 +1,7 @@
 # Budget Control V3 Core Application
 Opens Source AGPL license project. Your Finances in One Place Set unlimited daily, weekly, monthly, or one-time budgets See every transaction, categorized automatically with tags or categories.
 
-![version](https://img.shields.io/badge/version-2.2.2-blue.svg) ![license](https://img.shields.io/badge/license-AGPL-blue.svg) <a 
+![license](https://img.shields.io/badge/license-AGPL-blue.svg) <a 
 href="https://github.com/budgetcontrol/budgetcontrol/issues?q=is%3Aopen+is%3Aissue" target="_blank">![GitHub issues](https://img.shields.io/github/issues/budgetcontrol/budgetcontrol)
 </a>
 </a> <a href="https://github.com/budgetcontrol/budgetcontrol/issues?q=is%3Aissue+is%3Aopen+label%3Abug" target="_blank">![GitHub issues by-label](https://img.shields.io/github/issues/budgetcontrol/budgetcontrol/bug?color=red)
