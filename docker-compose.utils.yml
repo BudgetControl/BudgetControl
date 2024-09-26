@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+
+  certbot:
+    image: certbot/certbot
+    container_name: budgetcontrol-certbot
+    volumes:
+      - ./bin/certbot/conf:/etc/letsencrypt
+      - ./bin/certbot/www:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+    networks:
+      - budgetcontrol_network
+
+  mailhog:
+    image: mailhog/mailhog
+    container_name: budgetcontrol-mailhog
+    ports:
+      - 8025:8025
+    networks:
+      - budgetcontrol_network
+
+  ftp:
+    image: fauria/vsftpd
+    container_name: budgetcontrol-ftp
+    ports:
+      - 21:21
+    volumes:
+      - ./bin/ftp:/home/vsftpd
+    environment:
+      - FTP_USER=budgetcontrol
+      - FTP_PASS=budgetcontrol
+    networks:
+      - budgetcontrol_network
+
+networks:
+  budgetcontrol_network:

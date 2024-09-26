@@ -1,4 +1,4 @@
-# Budget Control V3 Core Application
+# Budget Control V3 Application
 Opens Source AGPL license project. Your Finances in One Place Set unlimited daily, weekly, monthly, or one-time budgets See every transaction, categorized automatically with tags or categories.
 
 ![license](https://img.shields.io/badge/license-AGPL-blue.svg) <a 
@@ -11,40 +11,29 @@ href="https://github.com/budgetcontrol/budgetcontrol/issues?q=is%3Aopen+is%3Aiss
 The Budget Control V3.0 is designed using a microservice architecture, which allows for better scalability, flexibility, and maintainability of the application. The application is divided into multiple independent budgetcontrol, each responsible for a specific functionality.
 
 ## Requirment
-php version >= 8.2
+* php version >= 8.2
+* Docker version 27.0.3
+* node version v20.8.0
+
 
 ### Useful links
 * [Documentation](https://doc.budgetcontrol.cloud/docs/intro)
 * [Official Website](http://www.budgetcontrol.cloud)
 * [Staging enviroment](https://dev.budgetcontrol.cloud)
 
-### Installations
-* Clone the repository on your computer with the command git clone git@github.com:BudgetControl/Core.git.
-* Enter the repository directory with the command cd Core.
-* Checkout on the last stable version branch for dev environment or last tag version
-* Copy file .env.example on .env 
-* Run the install.sh bash script
-* * Params:
-* * * Enviroment variable -e dev | prod, default is dev
-* * * How serve PWA -p node | apache, default is apache
-* Enjoy
-   insert url http://localhost:3000/ ( api/incoming )
+### Before install
+Before install modify your etc host adding the following domain ( nano /etc/hosts ---> 127.0.0.1 dev.app.budgetcontrol.lan )
+
+### Installation BE microservices
+* run ./install.sh
+* enjoy
+
+### Installation Front End Application
+* clone Front End application ( git clone git@github.com:BudgetControl/Pwa.git )
+* lunch docker compose ( docker-compose up -d )
    
 ### Usage
-Go to http://localhost or your desidered domain and enjoy the application
-
-### Contributing
-Thank you for considering contributing to the Budget Control The contribution guide can be found in the Budget Control documentation.
-
-### Security Vulnerabilities
-If you discover a security vulnerability within Budget Control, please send an e-mail to marco.defelice890@gmail.com. All security vulnerabilities will be promptly addressed.
-
-### License
-The Budget Control is open-sourced software licensed under the MIT license.
-
-### Some develop information
-Front-end is developed with Vue Notus template Back-end is developed with laravel and other PHP Packages
-- **FE-REPO** https://github.com/BudgetControl/Pwa
+Go to https://dev.app.budgetcontrol.lan or your desidered domain and enjoy the application
 
 ## Microservice list
 
@@ -65,6 +54,7 @@ You can set-up xdebug interactive debuging mode
 1. configure your IDE for every microservice
 
 ### Xdebug configuration to insert in your IDE ( visual-studio )
+```
 {
     "name": "Listen for Xdebug",
     "type": "php",
@@ -74,23 +64,40 @@ You can set-up xdebug interactive debuging mode
         "/var/www/workdir": "${workspaceRoot}",
     }
 }
+```
 
 ### Xdebug configuration for IDE ( php storm )
 https://www.jetbrains.com/help/phpstorm/troubleshooting-php-debugging.html#no-debug-server-is-configured% 
 
+## Utils
+Some utils for development
+
+### Ftp Server
+
+#### CPU Intel/AMD
+* docker run --rm -d --name ftpd_server -p 21:21 -p 30000-30009:30000-30009 -e FTP_USER_NAME=user -e FTP_USER_PASS=12345 -e FTP_USER_HOME=/home/user stilliard/pure-ftpd
+
+#### M1 Apple
+* docker run --platform linux/amd64 -d -p 21:21 -p 21100-21110:21100-21110 -e FTP_USER=user -e FTP_PASS=12345 -e PASV_ADDRESS=127.0.0.1 -e PASV_MIN_PORT=21100 -e PASV_MAX_PORT=21110 --name ftpd_server fauria/vsftpd
+
+* docker network connect [budgetcontrol_network] ftpd_server
+
 ### Test with mailhog service
 You can use an fake mailhog server
-- docker run --rm -d --name mailhog -p 8025:8025 -p 1025:1025 mailhog/mailhog
-- docker network connect [network_name] mailhog
+* docker run --rm -d --name mailhog -p 8025:8025 -p 1025:1025 mailhog/mailhog
+* docker network connect [budgetcontrol_network] mailhog
+
+## Generate dummy certificate only for local env
+* openssl req -x509 -nodes -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365
 
 ## Author
 * Marco De Felice
 
-## Contributors
-* [FullBl](https://github.com/fullbl)
-
 ## Contributing
 We welcome contributions to Budget Control please refer to the contribution guide in the project documentation for more information on how to contribute.
+
+## Support US
+Please support US with a coffe donation at the following link [open collective](https://opencollective.com/budgetcontrol)
 
 ## Security Vulnerabilities
 If you discover any security vulnerabilities in Budget Control please report them to the project team immediately. We take security seriously and will address any vulnerabilities promptly.
