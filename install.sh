@@ -34,8 +34,11 @@ done
 for repo in "${repositories[@]}"; do
   repo_name=$(basename "$repo" .git)
   if [ -d "microservices/$repo_name" ]; then
-    echo "Copying .env.example to .env for $repo_name..."
-    cp "microservices/$repo_name/.env.example" "microservices/$repo_name/.env"
+    if [ -f "microservices/$repo_name/.env" ]; then
+      echo ".env file already exist for $repo_name"
+    else
+      cp "microservices/$repo_name/.env.example" "microservices/$repo_name/.env"
+    fi
   fi
 done
 
@@ -173,5 +176,10 @@ docker container exec budgetcontrol-ms-labels service apache2 restart
 docker container exec budgetcontrol-ms-debt service apache2 restart
 
 docker container restart budgetcontrol-proxy
+
+# Import database
+echo "Importing database"
+docker cp bin/db/budgetV2.sql budgetcontrol-db:/budgetV2.sql
+docker exec budgetcontrol-db bash -c "mysql -uroot -prootpasswordthebestway budgetV2 < /budgetV2.sql"
 
 echo "All done! Enjoy"

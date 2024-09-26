@@ -29,16 +29,6 @@ services:
       - budgetcontrol_network
     depends_on:
       - core
-
-  certbot:
-    image: certbot/certbot
-    container_name: budgetcontrol-certbot
-    volumes:
-    - ./bin/certbot/conf:/etc/letsencrypt
-    - ./bin/certbot/www:/var/www/certbot
-    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
-    networks:
-      - budgetcontrol_network
       
   ms-stats:
     container_name: budgetcontrol-ms-stats
@@ -144,6 +134,17 @@ services:
     image: mlabfactory/php8-apache:${DOCKER_TAG}
     volumes:
       - ./microservices/Labels/:/var/www/workdir
+    networks:
+      - budgetcontrol_network
+    restart: unless-stopped
+    depends_on:
+      - database
+
+  ms-debt:
+    container_name: budgetcontrol-ms-debt
+    image: mlabfactory/php8-apache:${DOCKER_TAG}
+    volumes:
+      - ./microservices/Debt/:/var/www/workdir
     networks:
       - budgetcontrol_network
     restart: unless-stopped
