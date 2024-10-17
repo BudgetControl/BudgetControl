@@ -25,7 +25,6 @@ env | grep LOGTAIL_API_KEY
 # Verifica che la variabile sia stata caricata
 if [ -z "$LOGTAIL_API_KEY" ]; then
   echo "The variable LOGTAIL_API_KEY was not found in the .env file"
-  exit 1
 fi
 
 # Esegui i comandi

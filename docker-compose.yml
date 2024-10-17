@@ -7,9 +7,6 @@ services:
     image: mlabfactory/php8-apache:${DOCKER_TAG}
     volumes:
       - ./microservices/Core/:/var/www/workdir
-    depends_on:
-      - database
-      - cache
     networks:
       - budgetcontrol_network
     restart: unless-stopped

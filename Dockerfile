@@ -28,15 +28,15 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # apache conf
 ###########################################
 
-COPY bin/apache/default.conf /etc/apache2/sites-available/budgetcontrol.cloud.conf
+COPY ./bin/apache/default.conf /etc/apache2/sites-available/budgetcontrol.cloud.conf
 RUN a2ensite budgetcontrol.cloud.conf
 RUN a2enmod rewrite
 
-COPY bin/php/custom.ini /usr/local/etc/php/conf.d/custom.ini
+COPY ./bin/php/custom.ini /usr/local/etc/php/conf.d/custom.ini
 ###########################################
 
 RUN mkdir /var/www/script
-COPY bin/entrypoint.sh /var/www/script/entrypoint.sh
+COPY ./bin/entrypoint.sh /var/www/script/entrypoint.sh
 RUN chmod +x /var/www/script/entrypoint.sh
 
 EXPOSE 3000
