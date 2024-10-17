@@ -21,6 +21,10 @@ The Budget Control V3.0 is designed using a microservice architecture, which all
 * [Official Website](http://www.budgetcontrol.cloud)
 * [Staging enviroment](https://dev.budgetcontrol.cloud)
 
+## Use Task
+Install the Task tool on your local machine to access useful commands. For instance, running 'task install' will set up the necessary environment infrastructure.
+[Official guide](https://docs.vapor.build/introduction.html)
+
 ### Before install
 Before install modify your etc host adding the following domain ( nano /etc/hosts ---> 127.0.0.1 dev.app.budgetcontrol.lan )
 

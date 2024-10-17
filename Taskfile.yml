@@ -1,0 +1,284 @@
+version: '3'
+
+tasks: 
+  install:
+    desc: "Install the project"
+    cmds:
+      - echo "Installing..."
+      - chmod 700 install.sh
+      - ./install.sh
+
+  install:demo-data:
+    desc: "Install demo data"
+    cmds:
+      - echo "Installing dummy data..."
+      - docker exec budgetcontrol-ms-jobs php console core:clear --drop=true
+      - docker exec budgetcontrol-ms-jobs php console core:install
+      - docker exec budgetcontrol-ms-jobs php console core:demo-data
+
+  stop:
+    desc: "Stop the project"
+    cmds:
+      - docker container stop budgetcontrol-core
+      - docker container stop budgetcontrol-gateway
+      - docker container stop budgetcontrol-ms-authentication
+      - docker container stop budgetcontrol-ms-workspace
+      - docker container stop budgetcontrol-ms-stats
+      - docker container stop budgetcontrol-ms-budget
+      - docker container stop budgetcontrol-ms-entries
+      - docker container stop budgetcontrol-ms-wallets
+      - docker container stop budgetcontrol-ms-searchengine
+      - docker container stop budgetcontrol-ms-labels
+      - docker container stop budgetcontrol-ms-debt
+      - docker container stop budgetcontrol-db
+      - docker container stop budgetcontrol-redis
+
+  start:
+    desc: "Start the project"
+    cmds:
+      - docker container start budgetcontrol-core
+      - docker container start budgetcontrol-gateway
+      - docker container start budgetcontrol-ms-authentication
+      - docker container start budgetcontrol-ms-workspace
+      - docker container start budgetcontrol-ms-stats
+      - docker container start budgetcontrol-ms-budget
+      - docker container start budgetcontrol-ms-entries
+      - docker container start budgetcontrol-ms-wallets
+      - docker container start budgetcontrol-ms-searchengine
+      - docker container start budgetcontrol-ms-labels
+      - docker container start budgetcontrol-ms-debt
+      - docker container start budgetcontrol-db
+      - docker container start budgetcontrol-redis
+
+  restart:
+    desc: "Restart the project"
+    cmds:
+      - docker container restart budgetcontrol-core
+      - docker container restart budgetcontrol-gateway
+      - docker container restart budgetcontrol-ms-authentication
+      - docker container restart budgetcontrol-ms-workspace
+      - docker container restart budgetcontrol-ms-stats
+      - docker container restart budgetcontrol-ms-budget
+      - docker container restart budgetcontrol-ms-entries
+      - docker container restart budgetcontrol-ms-wallets
+      - docker container restart budgetcontrol-ms-searchengine
+      - docker container restart budgetcontrol-ms-labels
+      - docker container restart budgetcontrol-ms-debt
+      - docker container restart budgetcontrol-db
+      - docker container restart budgetcontrol-redis
+
+  destroy:
+    desc: "Destroy the project"
+    cmds:
+      - docker container rm budgetcontrol-core
+      - docker container rm budgetcontrol-gateway
+      - docker container rm budgetcontrol-ms-authentication
+      - docker container rm budgetcontrol-ms-workspace
+      - docker container rm budgetcontrol-ms-stats
+      - docker container rm budgetcontrol-ms-budget
+      - docker container rm budgetcontrol-ms-entries
+      - docker container rm budgetcontrol-ms-wallets
+      - docker container rm budgetcontrol-ms-searchengine
+      - docker container rm budgetcontrol-ms-labels
+      - docker container rm budgetcontrol-ms-debt
+      - docker container rm budgetcontrol-proxy
+      - docker container rm budgetcontrol-pwa
+      - docker container rm budgetcontrol-db
+      - docker container rm budgetcontrol-redis
+
+ # Restart commands for each container
+  restart:core:
+    desc: "Restart budgetcontrol-core container"
+    cmds:
+      - docker container restart budgetcontrol-core
+
+  restart:gateway:
+    desc: "Restart budgetcontrol-gateway container"
+    cmds:
+      - docker container restart budgetcontrol-gateway
+
+  restart:ms-authentication:
+    desc: "Restart budgetcontrol-ms-authentication container"
+    cmds:
+      - docker container restart budgetcontrol-ms-authentication
+
+  restart:ms-workspace:
+    desc: "Restart budgetcontrol-ms-workspace container"
+    cmds:
+      - docker container restart budgetcontrol-ms-workspace
+
+  restart:ms-stats:
+    desc: "Restart budgetcontrol-ms-stats container"
+    cmds:
+      - docker container restart budgetcontrol-ms-stats
+
+  restart:ms-budget:
+    desc: "Restart budgetcontrol-ms-budget container"
+    cmds:
+      - docker container restart budgetcontrol-ms-budget
+
+  restart:ms-entries:
+    desc: "Restart budgetcontrol-ms-entries container"
+    cmds:
+      - docker container restart budgetcontrol-ms-entries
+
+  restart:ms-wallets:
+    desc: "Restart budgetcontrol-ms-wallets container"
+    cmds:
+      - docker container restart budgetcontrol-ms-wallets
+
+  restart:ms-searchengine:
+    desc: "Restart budgetcontrol-ms-searchengine container"
+    cmds:
+      - docker container restart budgetcontrol-ms-searchengine
+
+  restart:ms-labels:
+    desc: "Restart budgetcontrol-ms-labels container"
+    cmds:
+      - docker container restart budgetcontrol-ms-labels
+
+  restart:ms-debt:
+    desc: "Restart budgetcontrol-ms-debt container"
+    cmds:
+      - docker container restart budgetcontrol-ms-debt
+
+  restart:ms-jobs:
+    desc: "Restart budgetcontrol-ms-jobs container"
+    cmds:
+      - docker container restart budgetcontrol-ms-jobs
+
+  restart:db:
+    desc: "Restart budgetcontrol-db container"
+    cmds:
+      - docker container restart budgetcontrol-db
+
+  restart:redis:
+    desc: "Restart budgetcontrol-redis container"
+    cmds:
+      - docker container restart budgetcontrol-redis
+
+  restart:proxy:
+    desc: "Restart budgetcontrol-proxy container"
+    cmds:
+      - docker container restart budgetcontrol-proxy
+
+  restart:core:
+    desc: "Restart budgetcontrol-core container"
+    cmds:
+      - docker container restart budgetcontrol-core
+
+  restart:gateway:
+    desc: "Restart budgetcontrol-gateway container"
+    cmds:
+      - docker container restart budgetcontrol-gateway
+
+  restart:ms-authentication:
+    desc: "Restart budgetcontrol-ms-authentication container"
+    cmds:
+      - docker container restart budgetcontrol-ms-authentication
+
+  restart:ms-workspace:
+    desc: "Restart budgetcontrol-ms-workspace container"
+    cmds:
+      - docker container restart budgetcontrol-ms-workspace
+
+  restart:ms-stats:
+    desc: "Restart budgetcontrol-ms-stats container"
+    cmds:
+      - docker container restart budgetcontrol-ms-stats
+
+  restart:ms-budget:
+    desc: "Restart budgetcontrol-ms-budget container"
+    cmds:
+      - docker container restart budgetcontrol-ms-budget
+
+  restart:ms-entries:
+    desc: "Restart budgetcontrol-ms-entries container"
+    cmds:
+      - docker container restart budgetcontrol-ms-entries
+
+  restart:ms-wallets:
+    desc: "Restart budgetcontrol-ms-wallets container"
+    cmds:
+      - docker container restart budgetcontrol-ms-wallets
+
+  restart:ms-searchengine:
+    desc: "Restart budgetcontrol-ms-searchengine container"
+    cmds:
+      - docker container restart budgetcontrol-ms-searchengine
+
+  restart:ms-labels:
+    desc: "Restart budgetcontrol-ms-labels container"
+    cmds:
+      - docker container restart budgetcontrol-ms-labels
+
+  restart:ms-debt:
+    desc: "Restart budgetcontrol-ms-debt container"
+    cmds:
+      - docker container restart budgetcontrol-ms-debt
+
+  restart:ms-jobs:
+    desc: "Restart budgetcontrol-ms-jobs container"
+    cmds:
+      - docker container restart budgetcontrol-ms-jobs
+
+  # Exec commands for accessing containers
+  exec:ms-jobs:
+    desc: "Access budgetcontrol-ms-jobs container"
+    cmds:
+      - docker exec -it budgetcontrol-ms-jobs /bin/bash
+
+  exec:core:
+    desc: "Access budgetcontrol-core container"
+    cmds:
+      - docker exec -it budgetcontrol-core /bin/bash
+
+  exec:gateway:
+    desc: "Access budgetcontrol-gateway container"
+    cmds:
+      - docker exec -it budgetcontrol-gateway /bin/bash
+
+  exec:ms-authentication:
+    desc: "Access budgetcontrol-ms-authentication container"
+    cmds:
+      - docker exec -it budgetcontrol-ms-authentication /bin/bash
+
+  exec:ms-workspace:
+    desc: "Access budgetcontrol-ms-workspace container"
+    cmds:
+      - docker exec -it budgetcontrol-ms-workspace /bin/bash
+
+  exec:ms-stats:
+    desc: "Access budgetcontrol-ms-stats container"
+    cmds:
+      - docker exec -it budgetcontrol-ms-stats /bin/bash
+
+  exec:ms-budget:
+    desc: "Access budgetcontrol-ms-budget container"
+    cmds:
+      - docker exec -it budgetcontrol-ms-budget /bin/bash
+
+  exec:ms-entries:
+    desc: "Access budgetcontrol-ms-entries container"
+    cmds:
+      - docker exec -it budgetcontrol-ms-entries /bin/bash
+
+  exec:ms-wallets:
+    desc: "Access budgetcontrol-ms-wallets container"
+    cmds:
+      - docker exec -it budgetcontrol-ms-wallets /bin/bash
+
+  exec:ms-searchengine:
+    desc: "Access budgetcontrol-ms-searchengine container"
+    cmds:
+      - docker exec -it budgetcontrol-ms-searchengine /bin/bash
+
+  exec:ms-labels:
+    desc: "Access budgetcontrol-ms-labels container"
+    cmds:
+      - docker exec -it budgetcontrol-ms-labels /bin/bash
+
+  exec:ms-debt:
+    desc: "Access budgetcontrol-ms-debt container"
+    cmds:
+      - docker exec -it budgetcontrol-ms-debt /bin/bash
