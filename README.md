@@ -97,6 +97,10 @@ You can use an fake mailhog server
 ## Author
 * Marco De Felice
 
+## Contributors
+* Marco De Felice - [Developer marcodefelice.it](https://www.marcodefelice.it)
+* Martina Manca - [Brand Strategist martinamanca.com ](https://www.martinamanca.com)
+
 ## Contributing
 We welcome contributions to Budget Control please refer to the contribution guide in the project documentation for more information on how to contribute.
 
