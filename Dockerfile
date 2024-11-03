@@ -39,6 +39,4 @@ RUN mkdir /var/www/script
 COPY ./bin/entrypoint.sh /var/www/script/entrypoint.sh
 RUN chmod +x /var/www/script/entrypoint.sh
 
-EXPOSE 3000
-
 ENTRYPOINT [ "/var/www/script/entrypoint.sh" ] 

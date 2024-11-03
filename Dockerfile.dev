@@ -1,4 +1,4 @@
-FROM mlabfactory/php8-apache:v1.2.2
+FROM mlabfactory/php8-apache:v1.2.3
 
 ###########################################
 # xDebug

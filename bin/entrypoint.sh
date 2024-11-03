@@ -41,6 +41,10 @@ else
   echo "Not a Laravel project, skipping php artisan optimize"
 fi
 
+mkdir -p storage/logs
+chmod -R 775 storage/logs
+chown -R www-data:www-data storage/logs
+
 service apache2 restart
 
 tail -F -n 100 /var/www/workdir/storage/logs/error.log
