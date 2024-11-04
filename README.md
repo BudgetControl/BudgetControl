@@ -27,6 +27,7 @@ Install the Task tool on your local machine to access useful commands. For insta
 
 ### Before install
 Before install modify your etc host adding the following domain ( nano /etc/hosts ---> 127.0.0.1 dev.app.budgetcontrol.lan )
+copy .env.example to .env
 
 ### Installation BE microservices
 * run ./install.sh
