@@ -160,8 +160,6 @@ docker exec budgetcontrol-ms-searchengine composer install
 docker exec budgetcontrol-ms-labels composer install
 docker exec budgetcontrol-ms-debt composer install
 
-docker compose down
-
 echo "Restart all services"
 docker container exec budgetcontrol-core service apache2 restart
 docker container exec budgetcontrol-gateway service apache2 restart
@@ -178,8 +176,7 @@ docker container exec budgetcontrol-ms-debt service apache2 restart
 docker container restart budgetcontrol-proxy
 
 # Import database
-echo "Importing database"
-docker cp bin/db/budgetV2.sql budgetcontrol-db:/budgetV2.sql
-docker exec budgetcontrol-db bash -c "mysql -uroot -prootpasswordthebestway budgetV2 < /budgetV2.sql"
+echo "Install database"
+docker exec budgetcontrol-ms-jobs bash -c "php console core:install"
 
 echo "All done! Enjoy"

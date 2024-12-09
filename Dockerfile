@@ -14,6 +14,7 @@ RUN apt update \
             pdo \
             mysqli \
             pdo_mysql \
+            pdo_pgsql \
             bcmath
 RUN apt-get -y install sudo
 RUN a2enmod rewrite
@@ -35,6 +36,7 @@ RUN a2enmod rewrite
 COPY ./bin/php/custom.ini /usr/local/etc/php/conf.d/custom.ini
 ###########################################
 
+RUN mkdir -p public/storage/logs/
 RUN mkdir /var/www/script
 COPY ./bin/entrypoint.sh /var/www/script/entrypoint.sh
 RUN chmod +x /var/www/script/entrypoint.sh

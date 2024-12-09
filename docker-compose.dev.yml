@@ -1,5 +1,3 @@
-version: '3'
-
 services:
     proxy:
       volumes:
@@ -62,7 +60,7 @@ services:
 
     database:
       ports:
-        - "3336:3306"
+        - "5432:5432"
 
     core:
       image: mlabfactory/php8-apache:${DOCKER_TAG}-xdebug
@@ -70,7 +68,7 @@ services:
         - "3000:80"
 
 volumes:
-  mysql_persistent:
+  db_persistent:
     name: budgetcontrol_core_database
     external: false
   cache:

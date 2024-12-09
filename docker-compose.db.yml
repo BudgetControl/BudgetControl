@@ -1,19 +1,16 @@
-version: '2.2'
-
 services:
     database:
       container_name: budgetcontrol-db
-      image: mysql:5.7
+      image: postgres:13.18
       restart: unless-stopped
       ports:
-        - "3336:3306"
+      - "5432:5432"
       environment:
-        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-        MYSQL_USER: ${MYSQL_USERNAME}
-        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-        MYSQL_DATABASE: ${MYSQL_DATABASE}
+        POSTGRES_USER: ${DB_USERNAME}
+        POSTGRES_PASSWORD: ${DB_PASSWORD}
+        POSTGRES_DB: ${DB_DATABASE}
       volumes:
-        - mysql_persistent:/var/lib/mysql
+        - db_persistent:/var/lib/mysql
       networks:
         - budgetcontrol_network
 
@@ -30,7 +27,7 @@ services:
         - budgetcontrol_network
         
 volumes:
-  mysql_persistent:
+  db_persistent:
     name: budgetcontrol_core_database
     external: false
   cache:
