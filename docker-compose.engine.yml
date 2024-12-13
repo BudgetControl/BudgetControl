@@ -17,84 +17,84 @@ services:
       
   ms-stats:
     container_name: budgetcontrol-ms-stats
-    image: budgetcontrol316/stats:v1.3.1
+    image: budgetcontrol316/stats
     networks:
       - budgetcontrol_network
     restart: unless-stopped
   
   ms-workspace:
     container_name: budgetcontrol-ms-workspace
-    image: budgetcontrol316/workspace:v1.1.8
+    image: budgetcontrol316/workspace
     networks:
       - budgetcontrol_network
     restart: unless-stopped
   
   gateway:
     container_name: budgetcontrol-gateway
-    image: budgetcontrol316/gateway:main
+    image: budgetcontrol316/gateway
     networks:
       - budgetcontrol_network
     restart: unless-stopped
 
   ms-authentication:
     container_name: budgetcontrol-ms-authentication
-    image: budgetcontrol316/authentication:v1.3.2
+    image: budgetcontrol316/authentication
     networks:
       - budgetcontrol_network
     restart: unless-stopped
 
   ms-jobs:
     container_name: budgetcontrol-ms-jobs
-    image: budgetcontrol316/jobs:v1.3.4
+    image: budgetcontrol316/jobs
     networks:
       - budgetcontrol_network
     restart: unless-stopped
 
   ms-budget:
     container_name: budgetcontrol-ms-budget
-    image: budgetcontrol316/budget:v1.1.3
+    image: budgetcontrol316/budget
     networks:
       - budgetcontrol_network
     restart: unless-stopped
 
   ms-entries:
     container_name: budgetcontrol-ms-entries
-    image: budgetcontrol316/entries:v1.0.7
+    image: budgetcontrol316/entries
     networks:
       - budgetcontrol_network
     restart: unless-stopped
 
   ms-wallets:
     container_name: budgetcontrol-ms-wallets
-    image: budgetcontrol316/wallets:v1.2.1
+    image: budgetcontrol316/wallets
     networks:
       - budgetcontrol_network
     restart: unless-stopped
 
   ms-searchengine:
     container_name: budgetcontrol-ms-searchengine
-    image: budgetcontrol316/searchengine:v1.0.1
+    image: budgetcontrol316/searchengine
     networks:
       - budgetcontrol_network
     restart: unless-stopped
 
   ms-labels:
     container_name: budgetcontrol-ms-labels
-    image: budgetcontrol316/labels:main
+    image: budgetcontrol316/labels
     networks:
       - budgetcontrol_network
     restart: unless-stopped
 
   ms-debt:
     container_name: budgetcontrol-ms-debt
-    image: budgetcontrol316/bebt:v1.1.1
+    image: budgetcontrol316/debt
     networks:
       - budgetcontrol_network
     restart: unless-stopped
 
   pwa:
     container_name: budgetcontrol-pwa
-    image: budgetcontrol316/pwa:v3.1.1
+    image: budgetcontrol316/debt
     networks:
       - budgetcontrol_network
     restart: unless-stopped
