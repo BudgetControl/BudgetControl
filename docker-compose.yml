@@ -124,6 +124,15 @@ services:
       - budgetcontrol_network
     restart: unless-stopped
 
+  ms-savings:
+    container_name: budgetcontrol-ms-savings
+    image: mlabfactory/php8-apache:${DOCKER_TAG}
+    volumes:
+      - ./microservices/Debt/:/var/www/workdir
+    networks:
+      - budgetcontrol_network
+    restart: unless-stopped
+
 networks:
   budgetcontrol_network:
     external: true
