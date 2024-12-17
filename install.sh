@@ -17,6 +17,7 @@ repositories=(
   "git@github.com:BudgetControl/Gateway.git"
   "git@github.com:BudgetControl/Debt.git"
   "git@github.com:BudgetControl/Core.git"
+  "git@github.com:BudgetControl/Savings.git"
 )
 
 # Clone repositories if they do not exist
@@ -60,6 +61,7 @@ docker-compose.yaml() {
     "budgetcontrol-ms-labels"
     "budgetcontrol-ms-jobs"
     "budgetcontrol-ms-debt"
+    "budgetcontrol-ms-savings"
   )
 
   all_running=true
@@ -139,6 +141,9 @@ docker container cp microservices/Labels/bin/apache/default.conf budgetcontrol-m
 echo "Build ms Debt"
 docker container cp microservices/Debt/bin/apache/default.conf budgetcontrol-ms-debt:/etc/apache2/sites-available/budgetcontrol.cloud.conf
 
+echo "Build ms Savings"
+docker container cp microservices/Savings/bin/apache/default.conf budgetcontrol-ms-savings:/etc/apache2/sites-available/budgetcontrol.cloud.conf
+
 echo "Build ms Jobs"
 
 echo "Install composer and run migrations"
@@ -159,6 +164,7 @@ docker exec budgetcontrol-ms-wallets composer install
 docker exec budgetcontrol-ms-searchengine composer install
 docker exec budgetcontrol-ms-labels composer install
 docker exec budgetcontrol-ms-debt composer install
+docker exec budgetcontrol-ms-savings composer install
 
 echo "Restart all services"
 docker container exec budgetcontrol-core service apache2 restart
@@ -172,6 +178,7 @@ docker container exec budgetcontrol-ms-wallets service apache2 restart
 docker container exec budgetcontrol-ms-searchengine service apache2 restart
 docker container exec budgetcontrol-ms-labels service apache2 restart
 docker container exec budgetcontrol-ms-debt service apache2 restart
+docker container exec budgetcontrol-ms-savings service apache2 restart
 
 docker container restart budgetcontrol-proxy
 
