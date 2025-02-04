@@ -3,33 +3,8 @@
 # Set the default environment
 env="dev"
 
-# List of repositories to clone
-repositories=(
-  "git@github.com:BudgetControl/Entries.git"
-  "git@github.com:BudgetControl/Authentication.git"
-  "git@github.com:BudgetControl/Workspace.git"
-  "git@github.com:BudgetControl/Stats.git"
-  "git@github.com:BudgetControl/Budget.git"
-  "git@github.com:BudgetControl/Wallets.git"
-  "git@github.com:BudgetControl/SearchEngine.git"
-  "git@github.com:BudgetControl/Labels.git"
-  "git@github.com:BudgetControl/CommandJobs.git"
-  "git@github.com:BudgetControl/Gateway.git"
-  "git@github.com:BudgetControl/Debt.git"
-  "git@github.com:BudgetControl/Core.git"
-  "git@github.com:BudgetControl/Savings.git"
-)
-
-# Clone repositories if they do not exist
-for repo in "${repositories[@]}"; do
-  repo_name=$(basename "$repo" .git)
-  if [ ! -d "microservices/$repo_name" ]; then
-    echo "Cloning $repo_name..."
-    git clone "$repo" "microservices/$repo_name"
-  else
-    echo "$repo_name already exists. Skipping clone."
-  fi
-done
+# Init all submodules
+git submodule update --init --recursive
 
 # Copy .env.example to .env for each repository
 for repo in "${repositories[@]}"; do
