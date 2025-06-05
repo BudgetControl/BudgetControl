@@ -37,6 +37,7 @@ docker-compose.yaml() {
     "budgetcontrol-ms-jobs"
     "budgetcontrol-ms-debt"
     "budgetcontrol-ms-savings"
+    "budgetcontrol-ms-goals"
   )
 
   all_running=true
@@ -119,6 +120,9 @@ docker container cp microservices/Debt/bin/apache/default.conf budgetcontrol-ms-
 echo "Build ms Savings"
 docker container cp microservices/Savings/bin/apache/default.conf budgetcontrol-ms-savings:/etc/apache2/sites-available/budgetcontrol.cloud.conf
 
+echo "Build ms Goals"
+docker container cp microservices/Goals/bin/apache/default.conf budgetcontrol-ms-goals:/etc/apache2/sites-available/budgetcontrol.cloud.conf
+
 echo "Build ms Jobs"
 
 echo "Install composer and run migrations"
@@ -140,6 +144,7 @@ docker exec budgetcontrol-ms-searchengine composer install
 docker exec budgetcontrol-ms-labels composer install
 docker exec budgetcontrol-ms-debt composer install
 docker exec budgetcontrol-ms-savings composer install
+docker exec budgetcontrol-ms-goals composer install
 
 echo "Restart all services"
 docker container exec budgetcontrol-core service apache2 restart
@@ -154,6 +159,7 @@ docker container exec budgetcontrol-ms-searchengine service apache2 restart
 docker container exec budgetcontrol-ms-labels service apache2 restart
 docker container exec budgetcontrol-ms-debt service apache2 restart
 docker container exec budgetcontrol-ms-savings service apache2 restart
+docker container exec budgetcontrol-ms-goals service apache2 restart
 
 docker container restart budgetcontrol-proxy
 

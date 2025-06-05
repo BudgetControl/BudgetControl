@@ -43,3 +43,6 @@
 [submodule "Pwa"]
 	path = Pwa
 	url = git@github.com:BudgetControl/Pwa.git
+[submodule "microservices/Goals"]
+	path = microservices/Goals
+	url = git@github.com:BudgetControl/Goals.git
