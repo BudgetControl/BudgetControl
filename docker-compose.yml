@@ -132,6 +132,15 @@ services:
     networks:
       - budgetcontrol_network
     restart: unless-stopped
+  
+  ms-goals:
+    container_name: budgetcontrol-ms-goals
+    image: mlabfactory/php8-apache:${DOCKER_TAG}
+    volumes:
+      - ./microservices/Goals/:/var/www/workdir
+    networks:
+      - budgetcontrol_network
+    restart: unless-stopped
 
 networks:
   budgetcontrol_network:

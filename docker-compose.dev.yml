@@ -63,6 +63,11 @@ services:
       ports:
         - "8091:80"
 
+    ms-goals:
+      image: mlabfactory/php8-apache:${DOCKER_TAG}-xdebug
+      ports:
+        - "8092:80"
+
     database:
       ports:
         - "5432:5432"
