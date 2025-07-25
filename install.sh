@@ -6,6 +6,24 @@ env="develop"
 # Init all submodules
 git submodule update --init --recursive
 
+repositories=(
+  "microservices/Core.git"
+  "microservices/Gateway.git"
+  "microservices/Authentication.git"
+  "microservices/Workspace.git"
+  "microservices/Stats.git"
+  "microservices/Budget.git"
+  "microservices/Entries.git"
+  "microservices/Wallets.git"
+  "microservices/SearchEngine.git"
+  "microservices/Labels.git"
+  "microservices/Debt.git"
+  "microservices/Savings.git"
+  "microservices/Goals.git"
+  "microservices/Notifications.git"
+  "microservices/CommandJobs.git"
+)
+
 # Copy .env.example to .env for each repository
 for repo in "${repositories[@]}"; do
   repo_name=$(basename "$repo" .git)
