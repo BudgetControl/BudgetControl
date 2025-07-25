@@ -2,3 +2,9 @@
 bin/certbot/*
 libs/*
 AndroidApp
+AndroidApp/app/build
+.idea
+*.iml
+*.log
+*.swp
+.DS_Store

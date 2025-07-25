@@ -15,7 +15,8 @@ RUN apt update \
             mysqli \
             pdo_mysql \
             pdo_pgsql \
-            bcmath
+            bcmath \
+            grpc
 RUN apt-get -y install sudo
 RUN a2enmod rewrite
 RUN service apache2 restart

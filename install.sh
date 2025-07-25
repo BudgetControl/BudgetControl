@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set the default environment
-env="dev"
+env="develop"
 
 # Init all submodules
 git submodule update --init --recursive
@@ -13,7 +13,15 @@ for repo in "${repositories[@]}"; do
     if [ -f "microservices/$repo_name/.env" ]; then
       echo ".env file already exist for $repo_name"
     else
+      echo "Copying .env.example to .env for $repo_name"
       cp "microservices/$repo_name/.env.example" "microservices/$repo_name/.env"
+      # Checkout develop branch if it exists
+      cd "microservices/$repo_name" || exit
+      git fetch origin
+      if git branch -r | grep -q "origin/$env"; then
+        echo "Switching to $env branch for $repo_name"
+        git checkout "$env"
+      fi
     fi
   fi
 done
@@ -38,6 +46,7 @@ docker-compose.yaml() {
     "budgetcontrol-ms-debt"
     "budgetcontrol-ms-savings"
     "budgetcontrol-ms-goals"
+    "budgetcontrol-ms-notifications"
   )
 
   all_running=true
@@ -66,11 +75,11 @@ echo "Installing $env environment"
 
 # Add logic for specific environment
 case $env in
-  dev)
+  develop)
     echo "Setting up DEV environment"
     docker compose -f docker-compose.yml -f docker-compose.db.yml -f docker-compose.dev.yml up -d    
     ;;
-  prod)
+  production)
     echo "Setting up PROD environment"
     docker compose -f docker-compose.yml -f docker-compose.db.yml up -d
     docker container cp bin/apache/default.conf budgetcontrol-core:/etc/apache2/sites-available/budgetcontrol.cloud.conf
@@ -123,7 +132,11 @@ docker container cp microservices/Savings/bin/apache/default.conf budgetcontrol-
 echo "Build ms Goals"
 docker container cp microservices/Goals/bin/apache/default.conf budgetcontrol-ms-goals:/etc/apache2/sites-available/budgetcontrol.cloud.conf
 
+echo "Build ms Notifications"
+docker container cp microservices/Notifications/bin/apache/default.conf budgetcontrol-ms-notifications:/etc/apache2/sites-available/budgetcontrol.cloud.conf
+
 echo "Build ms Jobs"
+
 
 echo "Install composer and run migrations"
 docker exec budgetcontrol-core composer install
@@ -145,6 +158,7 @@ docker exec budgetcontrol-ms-labels composer install
 docker exec budgetcontrol-ms-debt composer install
 docker exec budgetcontrol-ms-savings composer install
 docker exec budgetcontrol-ms-goals composer install
+docker exec budgetcontrol-ms-notifications composer install
 
 echo "Restart all services"
 docker container exec budgetcontrol-core service apache2 restart
@@ -160,6 +174,7 @@ docker container exec budgetcontrol-ms-labels service apache2 restart
 docker container exec budgetcontrol-ms-debt service apache2 restart
 docker container exec budgetcontrol-ms-savings service apache2 restart
 docker container exec budgetcontrol-ms-goals service apache2 restart
+docker container exec budgetcontrol-ms-notifications service apache2 restart
 
 docker container restart budgetcontrol-proxy
 
