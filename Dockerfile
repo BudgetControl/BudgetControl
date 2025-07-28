@@ -1,4 +1,4 @@
-FROM php:8.2-apache
+FROM php:8.3.23-apache-bullseye
 
 RUN apt update \
         && apt install -y \
@@ -15,8 +15,8 @@ RUN apt update \
             mysqli \
             pdo_mysql \
             pdo_pgsql \
-            bcmath \
-            grpc
+            bcmath 
+
 RUN apt-get -y install sudo
 RUN a2enmod rewrite
 RUN service apache2 restart
