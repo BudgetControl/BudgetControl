@@ -76,6 +76,8 @@ https://www.jetbrains.com/help/phpstorm/troubleshooting-php-debugging.html#no-de
 
 ## Utils
 Some utils for development
+- Create docker multi platform
+docker buildx build --platform linux/amd64,linux/arm64 -t mlabfactory/php8-apache:v1.4.1 --push .
 
 ### Ftp Server
 

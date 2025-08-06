@@ -30,10 +30,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # apache conf
 ###########################################
 
-COPY ./bin/apache/default.conf /etc/apache2/sites-available/budgetcontrol.cloud.conf
-RUN a2ensite budgetcontrol.cloud.conf
-RUN a2enmod rewrite
-
+COPY ./bin/apache/default.conf /etc/apache2/sites-available/000-default.conf
 COPY ./bin/php/custom.ini /usr/local/etc/php/conf.d/custom.ini
 ###########################################
 
