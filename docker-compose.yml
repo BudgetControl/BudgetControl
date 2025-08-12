@@ -142,6 +142,15 @@ services:
       - budgetcontrol_network
     restart: unless-stopped
 
+  ms-notifications:
+    container_name: budgetcontrol-ms-notifications
+    image: mlabfactory/php8-apache:${DOCKER_TAG}
+    volumes:
+      - ./microservices/Notifications/:/var/www/workdir
+    networks:
+      - budgetcontrol_network
+    restart: unless-stopped
+
 networks:
   budgetcontrol_network:
     external: true

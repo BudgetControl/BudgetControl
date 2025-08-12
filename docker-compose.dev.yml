@@ -68,6 +68,11 @@ services:
       ports:
         - "8092:80"
 
+    ms-notifications:
+      image: mlabfactory/php8-apache:${DOCKER_TAG}-xdebug
+      ports:
+        - "8093:80"
+
     database:
       ports:
         - "5432:5432"
