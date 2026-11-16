@@ -38,6 +38,11 @@ services:
       ports:
         - "8086:80"
 
+    ms-sync:
+      image: mlabfactory/php8-apache:${DOCKER_TAG}-xdebug
+      ports:
+        - "8094:80"
+
     ms-wallets:
       image: mlabfactory/php8-apache:${DOCKER_TAG}-xdebug
       ports:

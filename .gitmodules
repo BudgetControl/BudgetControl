@@ -46,3 +46,7 @@
 [submodule "microservices/Goals"]
 	path = microservices/Goals
 	url = git@github.com:BudgetControl/Goals.git
+
+[submodule "microservices/Sync"]
+	path = microservices/Sync
+	url = git@github.com:BudgetControl/Sync.git
