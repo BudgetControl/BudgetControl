@@ -88,6 +88,15 @@ services:
       - budgetcontrol_network
     restart: unless-stopped
 
+  ms-sync:
+    container_name: budgetcontrol-ms-sync
+    image: mlabfactory/php8-apache:${DOCKER_TAG}
+    volumes:
+      - ./microservices/Sync/:/var/www/workdir
+    networks:
+      - budgetcontrol_network
+    restart: unless-stopped
+
   ms-wallets:
     container_name: budgetcontrol-ms-wallets
     image: mlabfactory/php8-apache:${DOCKER_TAG}
